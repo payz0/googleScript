@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <style>
+      #list li b{
+        cursor:pointer;
+      }
+      .container{
+        width:100%;
+      }
+      #load{
+        display:block;
+        margin-left:auto;
+        margin-right:auto;
+        opacity: .2;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+    <h2>
+      Hallo semua 
+    </h2>
+    <input type="text" id="nama">
+    <button onclick="add()">Save</button>  
+    <br>
+ 
+    <img src="https://idekukreatif.com/wp-content/uploads/2020/05/loading-gif.gif" id="load">
+    <ol id="list">
+      
+    </ol>
+    
+    pagination
+    <ul>
+      <li ><b onClick='pag(10,30)' >30</b></li>
+      <li><b onClick='pag(30,50)' >50</b></li>
+      <li>100</li>
+    </ul>
+    </div>
+   <?!= include("JavaScript"); ?>
+  </body>
+</html>
