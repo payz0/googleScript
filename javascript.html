@@ -1,0 +1,52 @@
+<script>
+    var pertama = []; 
+    var ls = document.getElementById("list");
+    var start = 0;
+    var sampai = 20;
+    // get data dari fungsi getFileContent
+    google.script.run.withSuccessHandler(cek).getData();
+
+    //fungsi callback
+    function cek(a){
+       pertama = a;
+       document.getElementById("load").style.display = "none";
+        for(let i = start; i < sampai; i++){
+          if(a[i] != undefined){
+            listed(a[i].nama,i)
+          }
+          // console.log(i)
+        }
+   
+    }
+
+    function pag(n,m){
+         ls.innerHTML = "";
+      start = n;
+      sampai = m;
+      cek(pertama);
+    }
+
+    function listed(val,i){
+      var li = document.createElement("li");
+      li.innerHTML =  val + " <b id='del' onclick='dele("+i+")'> x </b>" ;
+      ls.append(li);
+    }
+
+    function dele(i){
+      ls.innerHTML = "";
+      pertama.splice(i,1);
+      cek(pertama);
+      google.script.run.updateDb(pertama);
+      console.log(i)
+    }
+
+    function add(){
+      var siswa = document.getElementById("nama");
+      listed(siswa.value,pertama.length);
+      pertama.push({nama:siswa.value});
+      google.script.run.db(siswa.value);
+      google.script.run.updateDb(pertama);
+      siswa.value = "";
+    }
+
+    </script>
